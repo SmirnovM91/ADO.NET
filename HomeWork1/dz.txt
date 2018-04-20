@@ -1,0 +1,23 @@
+CREATE TABLE [dbo].[cars] (
+  [id] int IDENTITY NOT NULL,
+  [name] varchar(255) NULL,
+  [year] int NULL,
+  PRIMARY KEY CLUSTERED ([id])
+)
+
+CREATE TABLE [dbo].[people] (
+  [id] int IDENTITY NOT NULL,
+  [fio] varchar(255) NULL,
+  [phone] varchar(255) NULL,
+  PRIMARY KEY CLUSTERED ([id])
+)
+
+CREATE TABLE [dbo].[orders] (
+  [id] int IDENTITY NOT NULL,
+  [personid] int NULL,
+  [carid] int NULL,
+  [orderdate] datetime NULL,
+  PRIMARY KEY CLUSTERED ([id]),
+  CONSTRAINT [fk_carid] FOREIGN KEY ([carid]) REFERENCES [dbo].[cars] ([id]),
+  CONSTRAINT [fk_personid] FOREIGN KEY ([personid]) REFERENCES [dbo].[people] ([id])
+)
